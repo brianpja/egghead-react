@@ -168,41 +168,42 @@ import ReactDOM from 'react-dom';
 
 //Receiving new props
 
-// class App extends Component {
-//     constructor() {
-//         super();
-//         this.state = {increasing: false}
-//     }
-//     update() {
-//         ReactDOM.render(<App val={this.props.val + 1}/>, document.getElementById('root'))
-//     }
-//     componentWillReceiveProps(nextProps) {
-//         this.setState({increasing: nextProps.val > this.props.val})
-//     }
-//     shouldComponentUpdate(nextProps, nextState) {
-//         return nextProps.val %5 === 0;
-//         //this will keep render from firing until true is returned
-//         //meanwhile props.val is still increasing, just not being rendered
-//         //(this.state.increasing is also set to true after initial render)
-//     }
-//     render() {
-//         console.log('increasing: ', this.state.increasing)
-//         return (
-//             <button onClick={this.update.bind(this)}>
-//                 {this.props.val}
-//             </button>
-//         )
-//     }
-//     componentDidUpdate(prevProps, prevState) {
-//         console.log('prevProps: ', prevProps)
-//         console.log('prevState: ', prevState)
-//     }
-// }
-//
-// App.defaultProps = {val: 0};
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {increasing: false}
+    }
+    update() {
+      console.log('update')
+        ReactDOM.render(<App val={this.props.val + 1}/>, document.getElementById('root'))
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({increasing: nextProps.val > this.props.val})
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.val %5 === 0;
+        //this will keep render from firing until true is returned
+        //meanwhile props.val is still increasing, just not being rendered
+        //(this.state.increasing is also set to true after initial render)
+    }
+    render() {
+        console.log('increasing: ', this.state.increasing)
+        return (
+            <button onClick={this.update.bind(this)}>
+                {this.props.val}
+            </button>
+        )
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('prevProps: ', prevProps)
+        console.log('prevState: ', prevState)
+    }
+}
+
+App.defaultProps = {val: 0};
 
 
-//make an api call and map data from an array and filter it
+// make an api call and map data from an array and filter it
 // class App extends Component {
 //     constructor() {
 //         super();
@@ -245,26 +246,26 @@ import ReactDOM from 'react-dom';
 
 //setup for creating higher order components
 //INCOMPLETE
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <Button>button</Button>
-                <hr />
-                <Label>label</Label>
-            </div>
-        )
-    }
-}
-
-const Button = (props) => <button>{props.children}</button>
-
-class Label extends Component {
-    render() {
-        return (
-            <label>{this.props.children}</label>
-        )
-    }
-}
+// class App extends Component {
+//     render() {
+//         return (
+//             <div>
+//                 <Button>button</Button>
+//                 <hr />
+//                 <Label>label</Label>
+//             </div>
+//         )
+//     }
+// }
+//
+// const Button = (props) => <button>{props.children}</button>
+//
+// class Label extends Component {
+//     render() {
+//         return (
+//             <label>{this.props.children}</label>
+//         )
+//     }
+// }
 
 export default App;
